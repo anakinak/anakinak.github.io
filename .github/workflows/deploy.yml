@@ -1,0 +1,41 @@
+name: Generate and Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - master # Triggers compilation on every push to master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Compile Markdown to Template
+        run: |
+          # 1. Convert Markdown text content into clean HTML components using Pandoc
+          pandoc portfolio.md -o body.html
+
+          # 2. Use an inline python script to safely inject the body components into the main HTML layout
+          python3 -c "
+          with open('body.html', 'r') as f: body = f.read()
+          with open('.github/template.html', 'r') as f: template = f.read()
+          output = template.replace('{{CONTENT}}', body)
+          with open('index.html', 'w') as f: f.write(output)
+          "
+          
+          # 3. Clean up the temporary fragment file
+          rm body.html
+
+      - name: Commit and Push Generated index.html
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Automated build: Update index.html from markdown updates" || echo "No layout changes detected."
+          git push origin master
