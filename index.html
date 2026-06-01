@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankur Kachru — Enterprise Architect</title>
+    
+    <!-- Custom Phoenix + Code Bracket Hybrid Inline SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'%3E%3Cpath d='M35 65L15 50L35 35' stroke='%23ff4500' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M65 65L85 50L65 35' stroke='%23ff4500' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 20L62 45L50 38L38 45Z' fill='%23ff4500'/%3E%3Cpath d='M50 45L50 80' stroke='%23ff4500' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
     <style>
-        :root {
+        /* Design Tokens & Theme Matrices */
+        :root[data-theme="dark"] {
             --bg-pure: #000000;
             --bg-elevated: #09090b;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --text-primary: #ffffff;
             --text-secondary: #8e8e93;
             --text-muted: #48484a;
-            --accent-blue: #0066cc;
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --hero-gradient: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            --nav-blur: rgba(0, 0, 0, 0.7);
+        }
+
+        :root[data-theme="light"] {
+            --bg-pure: #ffffff;
+            --bg-elevated: #f5f5f7;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-muted: #86868b;
+            --hero-gradient: linear-gradient(180deg, #1d1d1f 0%, #515154 100%);
+            --nav-blur: rgba(255, 255, 255, 0.8);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.1s ease;
         }
 
         body {
             background-color: var(--bg-pure);
             color: var(--text-primary);
-            font-family: var(--font-stack);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             letter-spacing: -0.02em;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Layout Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 40px;
         }
 
-        /* Navigation */
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: var(--nav-blur);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-subtle);
@@ -67,6 +82,15 @@
             font-weight: 600;
             font-size: 0.95rem;
             letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         .nav-links a {
@@ -81,6 +105,34 @@
             color: var(--text-primary);
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 6px;
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--text-primary);
+            background-color: var(--border-subtle);
+        }
+
+        .theme-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         /* Hero Section */
         header {
             padding: 180px 0 100px 0;
@@ -93,7 +145,7 @@
             line-height: 1.1;
             letter-spacing: -0.04em;
             margin-bottom: 24px;
-            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            background: var(--hero-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -106,7 +158,7 @@
             line-height: 1.4;
         }
 
-        /* Quick Stats Grid */
+        /* Metric Highlights */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -134,7 +186,7 @@
             margin-top: 4px;
         }
 
-        /* General Section Formatting */
+        /* Content Sections */
         section {
             padding: 100px 0;
             border-bottom: 1px solid var(--border-subtle);
@@ -149,7 +201,7 @@
             font-weight: 600;
         }
 
-        /* Expertise Grid (Apple Bento-style Layout) */
+        /* Bento Grid Layout */
         .grid-two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -161,11 +213,6 @@
             border: 1px solid var(--border-subtle);
             border-radius: 14px;
             padding: 40px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .bento-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .bento-card h3 {
@@ -180,7 +227,7 @@
             line-height: 1.6;
         }
 
-        /* Experience Timeline */
+        /* Timeline Pattern */
         .timeline-item {
             display: grid;
             grid-template-columns: 250px 1fr;
@@ -231,21 +278,24 @@
         /* Footer */
         footer {
             padding: 60px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        /* Responsive Design */
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.8rem; }
             .grid-two-col { grid-template-columns: 1fr; }
             .timeline-item { grid-template-columns: 1fr; gap: 15px; }
             .stats-grid { grid-template-columns: 1fr; gap: 10px; padding: 40px 0; }
             .container { padding: 0 24px; }
-            nav { display: none; } /* Kept clean for mobile simplicity */
+            .nav-links { display: none; }
             header { padding-top: 100px; }
         }
     </style>
@@ -255,11 +305,26 @@
     <!-- Minimal Top Navbar -->
     <nav>
         <div class="container nav-inner">
-            <div class="nav-logo">Ankur Kachru</div>
-            <div class="nav-links">
-                <a href="#expertise">Capabilities</a>
-                <a href="#experience">History</a>
-                <a href="#philosophy">Standards</a>
+            <div class="nav-logo">
+                <!-- Mini inline favicon representation inside navbar -->
+                <svg width="16" height="16" viewBox="0 0 100 100" fill="none" style="vertical-align: middle;">
+                    <path d="M35 65L15 50L35 35" stroke="#ff4500" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M65 65L85 50L65 35" stroke="#ff4500" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M50 20L62 45L50 38L38 45Z" fill="#ff4500"/>
+                    <path d="M50 45L50 80" stroke="#ff4500" stroke-width="10" stroke-linecap="round"/>
+                </svg>
+                Ankur Kachru
+            </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#expertise">Capabilities</a>
+                    <a href="#experience">History</a>
+                    <a href="#philosophy">Standards</a>
+                </div>
+                <!-- Dynamic Theme Switcher Trigger -->
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle interface theme">
+                    <svg id="themeIcon" viewBox="0 0 24 24"></svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -268,7 +333,7 @@
     <header>
         <div class="container">
             <h1 class="hero-title">Architecting resilient,<br>high-performance systems.</h1>
-            <p class="hero-tagline">Senior Manager &amp; Full Stack Architect specializing in enterprise-grade infrastructure, micro-frontends, engineered performance engineering, and intelligent agentic frameworks.</p>
+            <p class="hero-tagline">Senior Manager &amp; Full Stack Architect specializing in enterprise-grade infrastructure, micro-frontends, precise performance engineering, and intelligent agentic frameworks.</p>
         </div>
     </header>
 
@@ -301,7 +366,7 @@
                 </div>
                 <div class="bento-card">
                     <h3>Performance Engineering</h3>
-                    <p>Obsessed with speed. Structuring automated frameworks to capture and optimize telemetry metrics across runtime variations—specifically stabilizing Large Contentful Paint (LCP) and Total Blocking Time (TBT).</p>
+                    <p>Obsessed with execution metrics. Structuring automated frameworks to capture and optimize telemetry metrics across runtime variations—specifically stabilizing Large Contentful Paint (LCP) and Total Blocking Time (TBT).</p>
                 </div>
                 <div class="bento-card">
                     <h3>Agentic Architectures</h3>
@@ -320,7 +385,6 @@
         <div class="container">
             <div class="section-label">Professional History</div>
             
-            <!-- Role 1 -->
             <div class="timeline-item">
                 <div class="time-meta">
                     <div class="company-name">Guardian Life</div>
@@ -336,7 +400,6 @@
                 </div>
             </div>
 
-            <!-- Role 2 (Historical Context Placeholder) -->
             <div class="timeline-item">
                 <div class="time-meta">
                     <div class="company-name">Enterprise Systems Leadership</div>
@@ -346,11 +409,10 @@
                     <div class="role-title">Lead Technical Architect / Engineering Lead</div>
                     <ul class="role-desc">
                         <li>Spearheaded end-to-end full stack lifecycles for highly visible consumer and enterprise applications.</li>
-                        <li>Designed automated tracking solutions for code governance, including technical dashboards maping pull-request velocity and metrics directly from API endpoints.</li>
+                        <li>Designed automated tracking solutions for code governance, including technical dashboards mapping pull-request velocity and metrics directly from API endpoints.</li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -368,11 +430,40 @@
 
     <!-- Minimalist Footer -->
     <footer>
-        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
-            <div>&copy; 2026 Ankur Kachru. Built with absolute minimalism.</div>
+        <div class="container footer-inner">
+            <div>&copy; 2026 Ankur Kachru. Engine built with absolute minimalism.</div>
             <div>Delhi-NCR, India</div>
         </div>
     </footer>
 
+    <!-- Theme Control System Logic -->
+    <script>
+        const htmlElement = document.documentElement;
+        const toggleButton = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Path definitions for minimal Sun/Moon paths
+        const moonPath = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+        const sunPath = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.22" x2="5.64" y2="17.78"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+
+        // Determine initial theme status state
+        const savedTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        
+        setTheme(savedTheme);
+
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            // Show the opposite icon of the current theme (indicating what clicking will do)
+            themeIcon.innerHTML = theme === 'light' ? moonPath : sunPath;
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(targetTheme);
+        });
+    </script>
 </body>
 </html>
