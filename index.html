@@ -1,14 +1,150 @@
-<html>
-	<head>
-		<title>
-			Hey There
-		</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankur Kachru | Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #0366d6;
+            --text-color: #24292e;
+            --text-secondary: #586069;
+            --bg-color: #f6f8fa;
+            --card-bg: #ffffff;
+            --border-color: #eaecef;
+        }
 
-		<!-- My website which does nothing -->
-	</head>
-	<body>
-		<p>
-			Hello World!
-		</p>
-	</body>
-</html>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            padding: 50px;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 15px auto;
+            font-weight: 400;
+        }
+
+        .location {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .job-entry, .edu-entry {
+            margin-bottom: 20px;
+        }
+
+        .job-title, .edu-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .company, .institution {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin: 2px 0 8px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .skill-category {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-card">
+        <header>
+            <h1>Ankur Kachru</h1>
+            <p class="tagline">Senior Architect | Enterprise Architecture, Frontend Systems &amp; Scalable Web Applications | Technology Strategy and Engineering Excellence</p>
+            <div class="location">📍 New Delhi, Delhi, India</div>
+        </header>
+
+        <section id="summary">
+            <h2>Professional Summary</h2>
+            <p>Senior Architect with a proven track record in designing robust enterprise architectures and high-performance frontend systems. Dedicated to driving engineering excellence, implementing scalable frontend systems, and mapping technology strategies directly to business objectives.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <strong>Architecture</strong>
+                    Enterprise Architecture, Scalable Systems Design, Micro-Frontends
+                </div>
