@@ -3,148 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankur Kachru | Portfolio</title>
+    <title>Ankur Kachru — Enterprise Architect</title>
     <style>
         :root {
-            --primary-color: #0366d6;
-            --text-color: #24292e;
-            --text-secondary: #586069;
-            --bg-color: #f6f8fa;
-            --card-bg: #ffffff;
-            --border-color: #eaecef;
+            --bg-pure: #000000;
+            --bg-elevated: #09090b;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #8e8e93;
+            --text-muted: #48484a;
+            --accent-blue: #0066cc;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.7;
-            max-width: 850px;
+            background-color: var(--bg-pure);
+            color: var(--text-primary);
+            font-family: var(--font-stack);
+            letter-spacing: -0.02em;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            padding: 0 40px;
         }
 
-        .portfolio-card {
-            background: var(--card-bg);
-            padding: 50px;
-            border: 1px solid #e1e4e8;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 100;
         }
 
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 30px;
-            margin-bottom: 35px;
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 54px;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin: 0 0 10px 0;
-            color: var(--primary-color);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 15px auto;
-            font-weight: 400;
-        }
-
-        .location {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        section {
-            margin-bottom: 40px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            border-left: 4px solid var(--primary-color);
-            padding-left: 12px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        .job-entry, .edu-entry {
-            margin-bottom: 20px;
-        }
-
-        .job-title, .edu-title {
-            font-size: 1.15rem;
+        .nav-logo {
             font-weight: 600;
-            margin: 0;
+            font-size: 0.95rem;
+            letter-spacing: -0.03em;
         }
 
-        .company, .institution {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin: 2px 0 8px 0;
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-left: 30px;
+            transition: color 0.2s ease;
         }
 
-        ul {
-            padding-left: 20px;
-            margin: 10px 0;
+        .nav-links a:hover {
+            color: var(--text-primary);
         }
 
-        li {
-            margin-bottom: 8px;
+        /* Hero Section */
+        header {
+            padding: 180px 0 100px 0;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .skills-grid {
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Quick Stats Grid */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .skill-category {
-            background: var(--bg-color);
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+        .stat-card {
+            padding: 20px 0;
         }
 
-        .skill-category strong {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-color);
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
+        .stat-label {
             font-size: 0.85rem;
             color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* General Section Formatting */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Expertise Grid (Apple Bento-style Layout) */
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .bento-card {
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 40px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .bento-card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline */
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .time-meta .company-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .role-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .role-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .role-desc li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .role-desc li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            .grid-two-col { grid-template-columns: 1fr; }
+            .timeline-item { grid-template-columns: 1fr; gap: 15px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 10px; padding: 40px 0; }
+            .container { padding: 0 24px; }
+            nav { display: none; } /* Kept clean for mobile simplicity */
+            header { padding-top: 100px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-card">
-        <header>
-            <h1>Ankur Kachru</h1>
-            <p class="tagline">Senior Architect | Enterprise Architecture, Frontend Systems &amp; Scalable Web Applications | Technology Strategy and Engineering Excellence</p>
-            <div class="location">📍 New Delhi, Delhi, India</div>
-        </header>
+    <!-- Minimal Top Navbar -->
+    <nav>
+        <div class="container nav-inner">
+            <div class="nav-logo">Ankur Kachru</div>
+            <div class="nav-links">
+                <a href="#expertise">Capabilities</a>
+                <a href="#experience">History</a>
+                <a href="#philosophy">Standards</a>
+            </div>
+        </div>
+    </nav>
 
-        <section id="summary">
-            <h2>Professional Summary</h2>
-            <p>Senior Architect with a proven track record in designing robust enterprise architectures and high-performance frontend systems. Dedicated to driving engineering excellence, implementing scalable frontend systems, and mapping technology strategies directly to business objectives.</p>
-        </section>
+    <!-- Hero Section -->
+    <header>
+        <div class="container">
+            <h1 class="hero-title">Architecting resilient,<br>high-performance systems.</h1>
+            <p class="hero-tagline">Senior Manager &amp; Full Stack Architect specializing in enterprise-grade infrastructure, micro-frontends, engineered performance engineering, and intelligent agentic frameworks.</p>
+        </div>
+    </header>
 
-        <section id="skills">
-            <h2>Core Competencies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <strong>Architecture</strong>
-                    Enterprise Architecture, Scalable Systems Design, Micro-Frontends
+    <!-- Metrics Matrix -->
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">16+</div>
+                <div class="stat-label">Years System Engineering</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Core</div>
+                <div class="stat-label">Web Vitals Benchmarked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Scale</div>
+                <div class="stat-label">Enterprise Frameworks</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Capabilities / Bento Box Grid -->
+    <section id="expertise">
+        <div class="container">
+            <div class="section-label">Core Engineering Pillars</div>
+            <div class="grid-two-col">
+                <div class="bento-card">
+                    <h3>Enterprise Systems Architecture</h3>
+                    <p>Designing decentralized, maintainable software architectures. Expertise in micro-frontends, distributed state mechanisms, complex monorepos, and optimizing massive codebases for frictionless developer experience.</p>
                 </div>
+                <div class="bento-card">
+                    <h3>Performance Engineering</h3>
+                    <p>Obsessed with speed. Structuring automated frameworks to capture and optimize telemetry metrics across runtime variations—specifically stabilizing Large Contentful Paint (LCP) and Total Blocking Time (TBT).</p>
+                </div>
+                <div class="bento-card">
+                    <h3>Agentic Architectures</h3>
+                    <p>Evaluating and implementing neural agentic models within operational frameworks, closing the gap between complex backend language processing and lightning-fast frontend visual engines.</p>
+                </div>
+                <div class="bento-card">
+                    <h3>Technical Governance</h3>
+                    <p>Establishing clear corporate "Ways of Working" standards, driving alignment across distributed technical systems, and mentoring cross-functional engineers toward predictable velocity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / Professional Timeline -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-label">Professional History</div>
+            
+            <!-- Role 1 -->
+            <div class="timeline-item">
+                <div class="time-meta">
+                    <div class="company-name">Guardian Life</div>
+                    <div>Present Era</div>
+                </div>
+                <div>
+                    <div class="role-title">Sr. Manager &amp; Full Stack Architect</div>
+                    <ul class="role-desc">
+                        <li>Directing long-range frontend strategy and infrastructure layout for mission-critical core platforms.</li>
+                        <li>Built standardized benchmarking pipelines to validate and safeguard web performance anomalies across iterative production releases.</li>
+                        <li>Governing high-impact monorepos to ensure consistency, clean dependencies, and streamlined deployment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Role 2 (Historical Context Placeholder) -->
+            <div class="timeline-item">
+                <div class="time-meta">
+                    <div class="company-name">Enterprise Systems Leadership</div>
+                    <div>16-Year Track Record</div>
+                </div>
+                <div>
+                    <div class="role-title">Lead Technical Architect / Engineering Lead</div>
+                    <ul class="role-desc">
+                        <li>Spearheaded end-to-end full stack lifecycles for highly visible consumer and enterprise applications.</li>
+                        <li>Designed automated tracking solutions for code governance, including technical dashboards maping pull-request velocity and metrics directly from API endpoints.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Engineering Philosophy -->
+    <section id="philosophy">
+        <div class="container">
+            <div class="section-label">Engineering Philosophy</div>
+            <div class="grid-two-col" style="grid-template-columns: 1fr;">
+                <p style="font-size: 1.4rem; font-weight: 400; color: var(--text-secondary); line-height: 1.5; max-width: 800px;">
+                    "Simplicity is the ultimate sophistication. True systems excellence isn't found in over-engineering abstractions—it's realized when complex scale is channeled into clear code, deterministic performance, and absolute execution parity across teams."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer>
+        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+            <div>&copy; 2026 Ankur Kachru. Built with absolute minimalism.</div>
+            <div>Delhi-NCR, India</div>
+        </div>
+    </footer>
+
+</body>
+</html>
