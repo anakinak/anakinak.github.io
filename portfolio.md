@@ -1,7 +1,7 @@
 # Ankur Kachru
 ## Senior Architect | Enterprise Architecture & Frontend Systems
 
-**Location:** New Delhi, Delhi, India  
+**Location:** India  
 **Specialties:** Enterprise Architecture, Frontend Systems, Scalable Web Applications, Technology Strategy, and Engineering Excellence.
 
 ---
